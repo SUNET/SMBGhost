@@ -17,7 +17,7 @@ def smbghost_check(host):
 
             nb, = struct.unpack(">I", sock.recv(4))
             res = sock.recv(nb)
-    except (ConnectionRefusedError, socket.timeout, OSError):
+    except (ConnectionRefusedError, socket.timeout, OSError, struct.error):
         return None
 
     if not res[68:70] == b"\x11\x03":
